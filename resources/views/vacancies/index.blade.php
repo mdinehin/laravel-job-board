@@ -1,7 +1,9 @@
 <x-layout>
-    <ul class="flex flex-col gap-2 divide-y divide-gray-200">
+    <ul class="flex flex-col gap-4">
         @foreach($vacancies as $vacancy)
-            <li>{{ $vacancy->title }}</li>
+            <x-card>
+                {{ $vacancy->title }}
+            </x-card>
         @endforeach
     </ul>
 </x-layout>
