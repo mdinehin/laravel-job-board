@@ -6,5 +6,7 @@
         ]"
     />
 
-    <x-vacancy-card :$vacancy />
+    <x-vacancy-card :$vacancy>
+        <p class="text-sm text-slate-500">{!! nl2br(e($vacancy->description)) !!}</p>
+    </x-vacancy-card>
 </x-layout>

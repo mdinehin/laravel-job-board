@@ -6,21 +6,28 @@
     />
 
     <x-card class="mb-4 text-sm">
-        <div class="grid grid-cols-2 gap-4">
-            <div>
-                <div class="mb-1 font-semibold">Search</div>
-                <x-text-input name="search" value="" placeholder="Search for text" />
-            </div>
-            <div>
-                <div class="mb-1 font-semibold">Salary</div>
-                <div class="flex flex-row gap-2">
-                    <x-text-input name="min_salary" value="" placeholder="From" />
-                    <x-text-input name="max_salary" value="" placeholder="To" />
+        <form action="{{ route('vacancies.index') }}" method="GET" class="grid grid-col gap-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <div class="mb-1 font-semibold">Search</div>
+                    <x-text-input name="search" value="" placeholder="Search for text" />
                 </div>
+
+                <div>
+                    <div class="mb-1 font-semibold">Salary</div>
+                    <div class="flex flex-row gap-2">
+                        <x-text-input name="min_salary" value="" placeholder="From" />
+                        <x-text-input name="max_salary" value="" placeholder="To" />
+                    </div>
+                </div>
+
+                <div>3</div>
+
+                <div>4</div>
             </div>
-            <div>3</div>
-            <div>4</div>
-        </div>
+
+            <button class="w-full">Filter</button>
+        </form>
     </x-card>
 
     <ul class="flex flex-col gap-4">
