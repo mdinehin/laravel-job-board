@@ -8,4 +8,7 @@ Route::get('/', function () {
 });
 
 Route::resource('vacancies', VacancyController::class)
-    ->only('index');
+    ->only([
+        'index',
+        'show',
+    ]);
