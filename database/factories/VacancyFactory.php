@@ -18,8 +18,8 @@ class VacancyFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->jobTitle,
-            'description' => fake()->paragraphs(3, true),
+            'title' => fake()->jobTitle(),
+            'description' => fake()->realText(500),
             'salary' => fake()->numberBetween(5_000, 150_000),
             'location' => fake()->city,
             'category' => fake()->randomElement(Vacancy::$category),
