@@ -11,22 +11,22 @@
                 <div>
                     <div class="mb-1 font-semibold">Search</div>
 
-                    <x-text-input name="search" value="{{ request('search') }}" placeholder="Search keyword text" />
+                    <x-form.text-input name="search" value="{{ request('search') }}" placeholder="Search keyword text" />
                 </div>
 
                 <fieldset>
                     <legend class="mb-1 font-semibold">Salary Range</legend>
 
                     <div class="flex flex-row gap-2">
-                        <x-text-input name="min_salary" value="{{ request('min_salary') }}" placeholder="From" />
-                        <x-text-input name="max_salary" value="{{ request('max_salary') }}" placeholder="To" />
+                        <x-form.text-input name="min_salary" value="{{ request('min_salary') }}" placeholder="From" />
+                        <x-form.text-input name="max_salary" value="{{ request('max_salary') }}" placeholder="To" />
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <legend class="mb-1 font-semibold">Experience Level</legend>
 
-                    <x-radio-group name="experience"
+                    <x-form.radio-group name="experience"
                         :options="\App\Models\Vacancy::$experience"
                     />
                 </fieldset>
