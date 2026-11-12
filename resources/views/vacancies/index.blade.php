@@ -26,35 +26,9 @@
                 <fieldset>
                     <legend class="mb-1 font-semibold">Experience Level</legend>
 
-                    <div class="flex flex-col gap-2">
-                        <label class="flex flex-row items-center">
-                            <input type="radio" name="experience" value=""
-                                @checked(! request('experience'))
-                            />
-                            <span class="ml-1">All</span>
-                        </label>
-
-                        <label class="flex flex-row items-center">
-                            <input type="radio" name="experience" value="entry"
-                                @checked(request('experience') === 'entry')
-                            />
-                            <span class="ml-1">Entry</span>
-                        </label>
-
-                        <label class="flex flex-row items-center">
-                            <input type="radio" name="experience" value="intermediate"
-                                @checked(request('experience') === 'intermediate')
-                            />
-                            <span class="ml-1">Intermediate</span>
-                        </label>
-
-                        <label class="flex flex-row items-center">
-                            <input type="radio" name="experience" value="senior"
-                                @checked(request('experience') === 'senior')
-                            />
-                            <span class="ml-1">Senior</span>
-                        </label>
-                    </div>
+                    <x-radio-group name="experience"
+                        :options="\App\Models\Vacancy::$experience"
+                    />
                 </fieldset>
 
                 <div>4</div>
