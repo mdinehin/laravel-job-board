@@ -11,7 +11,7 @@
             <input type="radio" name="{{ $name }}" value="{{ $option }}"
                 @checked(request($name) === $option)
             />
-            <span class="ml-1">{{ $option }}</span>
+            <span class="ml-1">{{ Str::ucfirst($option) }}</span>
         </label>
     @endforeach
 </div>

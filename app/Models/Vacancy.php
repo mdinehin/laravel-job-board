@@ -33,4 +33,6 @@ class Vacancy extends Model
         'support',
         'technology',
     ];
+
+    public static int $maxAcronymLength = 2;
 }

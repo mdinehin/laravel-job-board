@@ -13,7 +13,11 @@
 
         <div class="flex space-x-1 text-xs">
             <x-tag>{{ Str::ucfirst($vacancy->experience) }}</x-tag>
-            <x-tag>{{ Str::ucfirst($vacancy->category) }}</x-tag>
+            <x-tag>{{
+                strlen($vacancy->category) <= \App\Models\Vacancy::$maxAcronymLength
+                    ? strtoupper($vacancy->category)
+                    : Str::ucfirst($vacancy->category)
+            }}</x-tag>
         </div>
     </div>
 

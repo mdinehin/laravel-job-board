@@ -6,7 +6,7 @@
     />
 
     <x-card class="mb-4 text-sm">
-        <form action="{{ route('vacancies.index') }}" method="GET" class="grid grid-col gap-4">
+        <form action="{{ route('vacancies.index') }}" method="GET" class="flex flex-col gap-4">
             <div class="grid grid-cols-2 gap-4">
                 <div>
                     <div class="mb-1 font-semibold">Search</div>
@@ -14,22 +14,22 @@
                     <x-form.text-input name="search" value="{{ request('search') }}" placeholder="Search keyword text" />
                 </div>
 
-                <fieldset>
-                    <legend class="mb-1 font-semibold">Salary Range</legend>
+                <div>
+                    <div class="mb-1 font-semibold">Salary Range</div>
 
                     <div class="flex flex-row gap-2">
                         <x-form.text-input name="min_salary" value="{{ request('min_salary') }}" placeholder="From" />
                         <x-form.text-input name="max_salary" value="{{ request('max_salary') }}" placeholder="To" />
                     </div>
-                </fieldset>
+                </div>
 
-                <fieldset>
-                    <legend class="mb-1 font-semibold">Experience Level</legend>
+                <div>
+                    <div class="mb-1 font-semibold">Experience Level</div>
 
                     <x-form.radio-group name="experience"
                         :options="\App\Models\Vacancy::$experience"
                     />
-                </fieldset>
+                </div>
 
                 <div>
                     <div class="mb-1 font-semibold">Category</div>
