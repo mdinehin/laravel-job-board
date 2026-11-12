@@ -18,8 +18,19 @@ class Vacancy extends Model
     ];
 
     public static array $category = [
-        'entry',
-        'intermediate',
-        'senior',
+        'construction',
+        'design',
+        'education',
+        'engineering',
+        'finance',
+        'healthcare',
+        'hospitality',
+        'hr',
+        'legal',
+        'marketing',
+        'operations',
+        'sales',
+        'support',
+        'technology',
     ];
 }
