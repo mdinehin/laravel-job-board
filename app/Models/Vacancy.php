@@ -6,6 +6,7 @@ use Database\Factories\VacancyFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Vacancy extends Model
 {
@@ -36,6 +37,16 @@ class Vacancy extends Model
     ];
 
     public static int $maxAcronymLength = 2;
+
+    /**
+     * Get the employer that owns the vacancy.
+     *
+     * @return BelongsTo<Employer, $this>
+     */
+    public function employer(): BelongsTo
+    {
+        return $this->belongsTo(Employer::class);
+    }
 
     /**
      * Normalize option labels by capitalizing standard words
