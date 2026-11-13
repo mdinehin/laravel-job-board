@@ -6,12 +6,12 @@
         <span class="ml-1">All</span>
     </label>
 
-    @foreach($options as $option)
+    @foreach($optionsWithLabels as $option => $label)
         <label class="flex flex-row items-center">
             <input type="radio" name="{{ $name }}" value="{{ $option }}"
                 @checked(request($name) === $option)
             />
-            <span class="ml-1">{{ Str::ucfirst($option) }}</span>
+            <span class="ml-1">{{ $label }}</span>
         </label>
     @endforeach
 </div>

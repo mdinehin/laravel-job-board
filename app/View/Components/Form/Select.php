@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Form;
 
+use App\Models\Vacancy;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -16,6 +17,21 @@ class Select extends Component
         public array $options
     ) {
         //
+    }
+
+    /**
+     * Get the options formatted with labels.
+     * 
+     * If provided a sequential list, values are keyed to themselves.
+     * If already associative, returns the array as-is.
+     *
+     * @return array<string, string>
+     */
+    public function optionsWithLabels(): array
+    {
+        return array_is_list($this->options)
+            ? array_combine($this->options, Vacancy::normalizeLabels($this->options))
+            : $this->options;
     }
 
     /**

@@ -3,13 +3,9 @@
 >
     <option value="">Select a {{ $name }}</option>
 
-    @foreach($options as $option)
+    @foreach($optionsWithLabels as $option => $label)
         <option value="{{ $option }}"
-            @selected(request('option') === $option)
-        >{{
-            strlen($option) <= \App\Models\Vacancy::$maxAcronymLength
-                ? strtoupper($option)
-                : Str::ucfirst($option)
-        }}</option>
+            @selected(request('category') === $option)
+        >{{ $label }}</option>
     @endforeach
 </select>

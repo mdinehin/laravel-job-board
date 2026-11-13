@@ -35,4 +35,30 @@ class Vacancy extends Model
     ];
 
     public static int $maxAcronymLength = 2;
+
+    /**
+     * Normalize option labels by capitalizing standard words
+     * and uppercasing short acronyms based on the length threshold.
+     *
+     * @param list<string> $options
+     * @return list<string>
+     */
+    public static function normalizeLabels(array $options): array
+    {
+        return array_map(self::normalizeLabel(...), $options);
+    }
+
+    /**
+     * Normalize a label by capitalizing standard words and
+     * uppercasing short acronyms based on the length threshold.
+     *
+     * @param string $option
+     * @return string
+     */
+    public static function normalizeLabel(string $option): string
+    {
+        return strlen($option) <= self::$maxAcronymLength
+            ? strtoupper($option)
+            : ucfirst($option);
+    }
 }
