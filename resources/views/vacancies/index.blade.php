@@ -5,14 +5,14 @@
         ]"
     />
 
-    <x-card class="mb-4 text-sm">
-        <form id="vacancy-filter-form" action="{{ route('vacancies.index') }}" method="GET" class="flex flex-col gap-4">
+    <x-card class="mb-4 text-sm" x-data="">
+        <form x-ref="vacancy-filter-form" action="{{ route('vacancies.index') }}" method="GET" class="flex flex-col gap-4">
             <div class="grid grid-cols-2 gap-4">
                 <div>
                     <div class="mb-1 font-semibold">Search</div>
 
                     <x-form.text-input name="search" value="{{ request('search') }}" placeholder="Search keyword text"
-                        form-id="vacancy-filter-form"
+                        form-ref="vacancy-filter-form"
                     />
                 </div>
 
@@ -21,11 +21,11 @@
 
                     <div class="flex flex-row gap-2">
                         <x-form.text-input name="min_salary" value="{{ request('min_salary') }}" placeholder="From"
-                            form-id="vacancy-filter-form"
+                            form-ref="vacancy-filter-form"
                         />
 
                         <x-form.text-input name="max_salary" value="{{ request('max_salary') }}" placeholder="To"
-                            form-id="vacancy-filter-form"
+                            form-ref="vacancy-filter-form"
                         />
                     </div>
                 </div>
