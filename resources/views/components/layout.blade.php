@@ -6,7 +6,7 @@
         <title>{{ config('app.name', 'Laravel Job Board') }}</title>
         @vite('resources/css/app.css')
     </head>
-    <body class="mx-auto my-10 max-w-2xl bg-slate-200 text-slate-700">
+    <body class="mx-auto my-10 max-w-2xl text-slate-700 bg-linear-to-r from-purple-100 via-pink-100 to-red-100">
         {{ $slot }}
     </body>
 </html>
