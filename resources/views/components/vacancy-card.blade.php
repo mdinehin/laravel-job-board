@@ -12,8 +12,13 @@
         </div>
 
         <div class="flex space-x-1 text-xs">
-            <x-tag>{{ \App\Models\Vacancy::normalizeLabel($vacancy->experience) }}</x-tag>
-            <x-tag>{{ \App\Models\Vacancy::normalizeLabel($vacancy->category) }}</x-tag>
+            <a href="{{ route('vacancies.index', [
+                'experience' => $vacancy->experience,
+            ]) }}"><x-tag>{{ \App\Models\Vacancy::normalizeLabel($vacancy->experience) }}</x-tag></a>
+
+            <a href="{{ route('vacancies.index', [
+                'category' => $vacancy->category,
+            ]) }}"><x-tag>{{ \App\Models\Vacancy::normalizeLabel($vacancy->category) }}</x-tag></a>
         </div>
     </div>
 
