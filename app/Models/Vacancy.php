@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Database\Factories\VacancyFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -60,5 +61,34 @@ class Vacancy extends Model
         return strlen($option) <= self::$maxAcronymLength
             ? strtoupper($option)
             : ucfirst($option);
+    }
+
+    /**
+     * Scope a query to apply various search and attribute filters.
+     *
+     * @param Builder $query
+     * @param array $filters
+     * @return Builder
+     */
+    public function scopeFilter(Builder $query, array $filters): Builder
+    {
+        return $query->when($filters['search'] ?? null, function ($query, $value) {
+            $query->where(function ($query) use ($value) {
+                $query->where('title', 'like', '%'.$value.'%')
+                    ->orWhere('description', 'like', '%'.$value.'%');
+            });
+        })
+            ->when($filters['min_salary'] ?? null, function ($query, $value) {
+                $query->where('salary', '>=', $value);
+            })
+            ->when($filters['max_salary'] ?? null, function ($query, $value) {
+                $query->where('salary', '<=', $value);
+            })
+            ->when($filters['experience'] ?? null, function ($query, $value) {
+                $query->where('experience', $value);
+            })
+            ->when($filters['category'] ?? null, function ($query, $value) {
+                $query->where('category', $value);
+            });
     }
 }
