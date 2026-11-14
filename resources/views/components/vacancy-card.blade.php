@@ -1,4 +1,4 @@
-<x-card>
+<x-card {{ $attributes }}>
     <div class="flex justify-between">
         <h2 class="text-lg font-medium">{{ $vacancy->title }}</h2>
 

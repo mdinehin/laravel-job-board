@@ -49,7 +49,7 @@ class VacancyController extends Controller
     public function show(Vacancy $vacancy)
     {
         return view('vacancies.show', [
-            'vacancy' => $vacancy->load('employer')
+            'vacancy' => $vacancy->load('employer.vacancies')
         ]);
     }
 
