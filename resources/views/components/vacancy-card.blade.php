@@ -5,13 +5,13 @@
         <div class="text-slay-500">£{{ number_format($vacancy->salary) }}</div>
     </div>
 
-    <div class="flex justify-between text-sm text-slate-500 items-center">
-        <div class="flex space-x-4">
+    <div class="flex flex-row gap-4 justify-between text-sm text-slate-500 items-center">
+        <div class="flex flex-row gap-2">
             <div>{{ $vacancy->employer->company_name }}</div>
             <div>{{ $vacancy->location }}</div>
         </div>
 
-        <div class="flex space-x-1 text-xs">
+        <div class="flex flex-row gap-2 text-xs">
             <a href="{{ route('vacancies.index', [
                 'experience' => $vacancy->experience,
             ]) }}"><x-tag>{{ \App\Models\Vacancy::normalizeLabel($vacancy->experience) }}</x-tag></a>
