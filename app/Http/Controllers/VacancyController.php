@@ -21,7 +21,9 @@ class VacancyController extends Controller
         ]);
 
         return view('vacancies.index', [
-            'vacancies' => Vacancy::filter($filters)->get(),
+            'vacancies' => Vacancy::with('employer')
+                ->filter($filters)
+                ->get(),
         ]);
     }
 
@@ -46,7 +48,9 @@ class VacancyController extends Controller
      */
     public function show(Vacancy $vacancy)
     {
-        return view('vacancies.show', compact('vacancy'));
+        return view('vacancies.show', [
+            'vacancy' => $vacancy->load('employer')
+        ]);
     }
 
     /**
