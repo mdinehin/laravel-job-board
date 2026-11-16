@@ -4,13 +4,36 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ config('app.name', 'Laravel Job Board') }}</title>
+
         @vite([
             'resources/css/app.css',
             'resources/js/app.js',
         ])
     </head>
-    <body class="mx-auto my-10 max-w-2xl text-slate-700 bg-linear-to-r from-purple-100 via-pink-100 to-red-100">
-        {{ auth()->user()->name ?? 'Guest' }}
+    <body class="mx-auto my-10 max-w-2xl flex flex-col gap-4 text-slate-700 bg-linear-to-r from-purple-100 via-pink-100 to-red-100">
+        <nav class="flex gap-4 justify-between items-center text-lg font-medium">
+            <div>
+                <x-link-nav :href="route('vacancies.index')">Home</x-link-nav>
+            </div>
+
+            <div class="flex flex-row gap-2 items-center">
+                @auth
+                    <div>Hello, {{ auth()->user()->name ?? 'Anonymous' }}!</div>
+
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <button
+                            class="cursor-pointer hover:underline hover:underline-offset-4"
+                        >(Sign out)</button>
+                    </form>
+                @else
+                    <x-link-nav :href="route('login')">Sign in</x-link-nav>
+                @endauth
+            </div>
+        </nav>
+
         {{ $slot }}
     </body>
 </html>

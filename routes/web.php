@@ -24,3 +24,6 @@ Route::resource('auth', AuthController::class)
         'create',
         'store',
     ]);
+
+Route::delete('/logout', [AuthController::class, 'destroy'])
+    ->name('logout');
