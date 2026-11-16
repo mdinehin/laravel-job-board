@@ -10,6 +10,7 @@
         ])
     </head>
     <body class="mx-auto my-10 max-w-2xl text-slate-700 bg-linear-to-r from-purple-100 via-pink-100 to-red-100">
+        {{ auth()->user()->name ?? 'Guest' }}
         {{ $slot }}
     </body>
 </html>
