@@ -20,9 +20,17 @@ class VacancyApplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Vacancy $vacancy)
     {
-        //
+        $vacancy->applications()->create([
+            'user_id' => $request->user()->id,
+            ...$request->validate([
+                'expected_salary' => 'required|min:1|max:1000000',
+            ]),
+        ]);
+
+        return redirect()->route('vacancies.show', $vacancy)
+            ->with('success', 'Vacancy application submitted successfully');
     }
 
     /**

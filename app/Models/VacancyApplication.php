@@ -15,6 +15,16 @@ class VacancyApplication extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'expected_salary',
+        'user_id',
+    ];
+
+    /**
      * Get the vacancy that owns the application.
      *
      * @return BelongsTo<Vacancy, $this>
