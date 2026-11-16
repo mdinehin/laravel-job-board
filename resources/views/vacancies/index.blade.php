@@ -1,11 +1,11 @@
 <x-layout>
-    <x-breadcrumb class="mb-4"
+    <x-breadcrumb
         :links="[
             'Vacancies' => route('vacancies.index'),
         ]"
     />
 
-    <x-card class="mb-4 text-sm" x-data="">
+    <x-card class="text-sm" x-data="">
         <form x-ref="vacancy-filter-form" action="{{ route('vacancies.index') }}" method="GET" class="flex flex-col gap-4">
             <div class="grid grid-cols-2 gap-4">
                 <div>
@@ -56,9 +56,9 @@
             <li>
                 <x-vacancy-card :$vacancy>
                     <div>
-                        <x-link-button :href="route('vacancies.show', $vacancy)">
-                            View vacancy
-                        </x-link-button>
+                        <x-link-button
+                            :href="route('vacancies.show', $vacancy)"
+                        >View vacancy</x-link-button>
                     </div>
                 </x-vacancy-card>
             </li>

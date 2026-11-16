@@ -3,7 +3,7 @@
         <input type="radio" name="{{ $name }}" value=""
             @checked(! request($name))
         />
-        <span class="ml-1">All</span>
+        <span class="ml-2">All</span>
     </label>
 
     @foreach($optionsWithLabels as $option => $label)
@@ -11,7 +11,7 @@
             <input type="radio" name="{{ $name }}" value="{{ $option }}"
                 @checked(request($name) === $option)
             />
-            <span class="ml-1">{{ $label }}</span>
+            <span class="ml-2">{{ $label }}</span>
         </label>
     @endforeach
 </div>
