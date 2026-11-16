@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\VacancyApplication;
 use Database\Factories\VacancyFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Vacancy extends Model
 {
@@ -46,6 +48,16 @@ class Vacancy extends Model
     public function employer(): BelongsTo
     {
         return $this->belongsTo(Employer::class);
+    }
+
+    /**
+     * Get the applications for the vacancy.
+     *
+     * @return HasMany<VacancyApplication, $this>
+     */
+    public function applications(): HasMany
+    {
+        return $this->hasMany(VacancyApplication::class);
     }
 
     /**
