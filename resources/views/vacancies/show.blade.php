@@ -9,11 +9,16 @@
     <x-vacancy-card :$vacancy>
         <p class="text-sm text-slate-500">{!! nl2br(e($vacancy->description)) !!}</p>
 
-        <div>
-            <x-link-button
-                :href="route('vacancies.application.create', $vacancy)"
-            >Apply</x-link-button>
-        </div>
+        @can('apply', $vacancy)
+            <div>
+                <x-link-button
+                    :href="route('vacancies.application.create', $vacancy)"
+                >Apply</x-link-button>
+            </div>
+        @else
+            <p class="text-sm font-medium text-slate-500">You have already applied for this position.</p>
+        @endcan
+
     </x-vacancy-card>
 
     <x-card>

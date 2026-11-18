@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\VacancyApplication;
 use Database\Factories\VacancyFactory;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -116,5 +117,25 @@ class Vacancy extends Model
             ->when($filters['category'] ?? null, function ($query, $value) {
                 $query->where('category', $value);
             });
+    }
+
+    /**
+     * Determine if the given user has already applied for this job.
+     *
+     * @param Authenticatable|int $user
+     * @return bool
+     */
+    public function hasUserApplied(Authenticatable|int $user): bool
+    {
+        $userId = $user instanceof Authenticatable
+            ? $user->getAuthIdentifier()
+            : $user;
+
+        return $this->where('id', $this->id)
+            ->whereHas(
+                'applications',
+                fn ($query) => $query->where('user_id', $userId)
+            )
+            ->exists();
     }
 }

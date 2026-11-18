@@ -64,8 +64,11 @@ class VacancyPolicy
         return false;
     }
 
+    /**
+     * Determine whether the user can apply for the vacancy.
+     */
     public function apply(User $user, Vacancy $vacancy): bool
     {
-        return false;
+        return ! $vacancy->hasUserApplied($user);
     }
 }
