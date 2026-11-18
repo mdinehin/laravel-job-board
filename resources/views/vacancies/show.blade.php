@@ -8,6 +8,12 @@
 
     <x-vacancy-card :$vacancy>
         <p class="text-sm text-slate-500">{!! nl2br(e($vacancy->description)) !!}</p>
+
+        <div>
+            <x-link-button
+                :href="route('vacancies.application.create', $vacancy)"
+            >Apply</x-link-button>
+        </div>
     </x-vacancy-card>
 
     <x-card>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class VacancyApplicationController extends Controller
 {
@@ -12,6 +13,8 @@ class VacancyApplicationController extends Controller
      */
     public function create(Vacancy $vacancy)
     {
+        Gate::authorize('apply', $vacancy);
+
         return view('vacancy_applications.create', [
             'vacancy' => $vacancy,
         ]);
