@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserVacancyApplicationController;
 use App\Http\Controllers\VacancyApplicationController;
 use App\Http\Controllers\VacancyController;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,7 @@ Route::resource('vacancies', VacancyController::class)
     ]);
 
 // Alias the default 'login' route expected by middleware to a custom auth path
-Route::get('/login', function () {
+Route::get('login', function () {
     return to_route('auth.create');
 })->name('login');
 
@@ -26,7 +27,7 @@ Route::resource('auth', AuthController::class)
         'store',
     ]);
 
-Route::delete('/logout', [AuthController::class, 'destroy'])
+Route::delete('logout', [AuthController::class, 'destroy'])
     ->name('logout');
 
 Route::middleware(['auth'])->group(function () {
@@ -34,5 +35,11 @@ Route::middleware(['auth'])->group(function () {
         ->only([
             'create',
             'store',
+        ]);
+
+    Route::resource('my-applications', UserVacancyApplicationController::class)
+        ->only([
+            'index',
+            'destroy',
         ]);
 });

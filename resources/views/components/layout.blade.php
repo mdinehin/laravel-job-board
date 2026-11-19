@@ -18,7 +18,11 @@
 
             <div class="flex flex-row gap-2 items-center">
                 @auth
-                    <div>Hello, {{ auth()->user()->name ?? 'Anonymous' }}!</div>
+                    <div>Hi, {{ auth()->user()->name ?? 'Anonymous' }}!</div>
+
+                    <div>
+                        <a href="{{ route('my-applications.index') }}">Applications</a>
+                    </div>
 
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
