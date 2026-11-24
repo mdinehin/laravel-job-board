@@ -44,6 +44,12 @@
                 <p>{{ session('success') }} ✔</p>
             </div>
         @endif
+        @if(session('error'))
+            <div class="rounded-md border-l-4 border-red-300 bg-red-100 p-4 text-red-700 opacity-75">
+                <p>Error!</p>
+                <p>{{ session('error') }} ❌</p>
+            </div>
+        @endif
 
         {{ $slot }}
     </body>
