@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\VacancyApplication;
 use Illuminate\Http\Request;
 
 class UserVacancyApplicationController extends Controller
@@ -29,9 +30,18 @@ class UserVacancyApplicationController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * 
+     * Uses implicit route-model binding, so the parameter name ($myApplication)
+     * must match the camelCase equivalent of the {my_application} route segment
+     * on DELETE my-applications/{my_application}.
+     *
+     * @param  VacancyApplication  $myApplication
      */
-    public function destroy(string $id)
+    public function destroy(VacancyApplication $myApplication)
     {
-        //
+        $myApplication->delete();
+
+        return redirect()->back()
+            ->with('success', 'Vacancy application withdrawn successfully');
     }
 }
