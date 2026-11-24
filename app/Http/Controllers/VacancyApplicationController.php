@@ -25,6 +25,8 @@ class VacancyApplicationController extends Controller
      */
     public function store(Request $request, Vacancy $vacancy)
     {
+        Gate::authorize('apply', $vacancy);
+
         $validatedData = $request->validate([
             'expected_salary' => 'required|min:1|max:1000000',
             'cv' => 'required|file|mimes:pdf|max:2048',
