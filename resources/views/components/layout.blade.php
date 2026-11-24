@@ -21,7 +21,7 @@
                     <div>Hi, {{ auth()->user()->name ?? 'Anonymous' }}!</div>
 
                     <div>
-                        <a href="{{ route('my-applications.index') }}">Applications</a>
+                        <x-link-nav :href="route('my-applications.index')">Applications</x-link-nav>
                     </div>
 
                     <form action="{{ route('logout') }}" method="POST">
@@ -39,10 +39,10 @@
         </nav>
 
         @if(session('success'))
-        <div class="rounded-md border-l-4 border-green-300 bg-green-100 p-4 text-green-700 opacity-75">
-            <p>Success!</p>
-            <p>{{ session('success') }} ✔</p>
-        </div>
+            <div class="rounded-md border-l-4 border-green-300 bg-green-100 p-4 text-green-700 opacity-75">
+                <p>Success!</p>
+                <p>{{ session('success') }} ✔</p>
+            </div>
         @endif
 
         {{ $slot }}

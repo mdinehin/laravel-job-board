@@ -18,7 +18,6 @@
         @else
             <p class="text-sm font-medium text-slate-500">You have already applied for this position.</p>
         @endcan
-
     </x-vacancy-card>
 
     <x-card>
@@ -29,7 +28,9 @@
                 <li class="flex justify-between">
                     <div>
                         <div class="text-slate-700">
-                            <a href="{{ route('vacancies.show', $otherVacancy) }}">{{ $otherVacancy->title }}</a>
+                            <x-link-nav
+                                :href="route('vacancies.show', $otherVacancy)"
+                            >{{ $otherVacancy->title }}</x-link-nav>
                         </div>
 
                         <div class="text-xs">{{ $otherVacancy->created_at->diffForHumans() }}</div>

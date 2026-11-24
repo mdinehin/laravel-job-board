@@ -5,7 +5,7 @@
         ]"
     />
 
-    @forelse ($applications as $application)
+    @forelse($applications as $application)
         <x-vacancy-card :vacancy="$application->vacancy">
             <div class="flex items-end justify-between text-xs text-slate-500">
                 <div>
