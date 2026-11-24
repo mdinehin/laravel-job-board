@@ -9,7 +9,7 @@
         <form x-ref="vacancy-filter-form" action="{{ route('vacancies.index') }}" method="GET" class="flex flex-col gap-4">
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <div class="mb-1 font-semibold">Search</div>
+                    <x-form.label>Search</x-form.label>
 
                     <x-form.text-input name="search" value="{{ request('search') }}" placeholder="Search keyword text"
                         form-ref="vacancy-filter-form"
@@ -17,7 +17,7 @@
                 </div>
 
                 <div>
-                    <div class="mb-1 font-semibold">Salary Range</div>
+                    <x-form.label>Salary Range</x-form.label>
 
                     <div class="flex flex-row gap-2">
                         <x-form.text-input name="min_salary" value="{{ request('min_salary') }}" placeholder="From"
@@ -31,7 +31,7 @@
                 </div>
 
                 <div>
-                    <div class="mb-1 font-semibold">Experience Level</div>
+                    <x-form.label>Experience Level</x-form.label>
 
                     <x-form.radio-group name="experience"
                         :options="\App\Models\Vacancy::$experience"
@@ -39,7 +39,7 @@
                 </div>
 
                 <div>
-                    <div class="mb-1 font-semibold">Category</div>
+                    <x-form.label>Category</x-form.label>
 
                     <x-form.select name="category"
                         :options="\App\Models\Vacancy::$category"

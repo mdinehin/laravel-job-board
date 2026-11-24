@@ -7,7 +7,7 @@
 
             <div class="flex flex-col gap-4">
                 <div>
-                    <div class="mb-1 font-semibold">Email</div>
+                    <x-form.label :required="true">Email</x-form.label>
 
                     <x-form.text-input name="email" value="" placeholder="Email"
                         form-ref="vacancy-filter-form"
@@ -15,7 +15,7 @@
                 </div>
 
                 <div>
-                    <div class="mb-1 font-semibold">Password</div>
+                    <x-form.label :required="true">Password</x-form.label>
 
                     <x-form.text-input name="password" type="password" value="" placeholder="Password"
                         form-ref="vacancy-filter-form"

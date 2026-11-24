@@ -18,13 +18,13 @@
             @csrf
 
             <div>
-                <div class="mb-1 font-semibold">Expected Salary</div>
+                <x-form.label :required="true">Expected Salary</x-form.label>
 
                 <x-form.text-input type="number" name="expected_salary" value="{{ request('expected_salary') }}" />
             </div>
 
             <div>
-                <div class="mb-1 font-semibold">Upload CV</div>
+                <x-form.label :required="true">Upload CV</x-form.label>
 
                 <x-form.text-input type="file" name="cv" />
             </div>
