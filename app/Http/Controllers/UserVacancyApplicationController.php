@@ -17,7 +17,11 @@ class UserVacancyApplicationController extends Controller
 
         return view('user_vacancy_applications.index', [
             'applications' => $user->applications()
-                ->with('vacancy', 'vacancy.employer')
+                ->with([
+                    'vacancy' => fn ($query) => $query->withCount('applications')
+                        ->withAvg('applications', 'expected_salary'),
+                    'vacancy.employer',
+                ])
                 ->latest()
                 ->get(),
         ]);
