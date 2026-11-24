@@ -22,6 +22,7 @@ class VacancyApplication extends Model
     protected $fillable = [
         'expected_salary',
         'user_id',
+        'cv_path',
     ];
 
     /**
