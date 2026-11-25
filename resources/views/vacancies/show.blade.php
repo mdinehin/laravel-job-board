@@ -12,7 +12,7 @@
         @can('apply', $vacancy)
             <div>
                 <x-link-button
-                    :href="route('vacancies.application.create', $vacancy)"
+                    :href="route('vacancies.applications.create', $vacancy)"
                 >Apply</x-link-button>
             </div>
         @else

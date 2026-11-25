@@ -12,7 +12,7 @@
     <x-card>
         <h2 class="text-lg font-medium">Your Vacancy Application</h2>
 
-        <form action="{{ route('vacancies.application.store', $vacancy) }}" method="POST" class="flex flex-col gap-4"
+        <form action="{{ route('vacancies.applications.store', $vacancy) }}" method="POST" class="flex flex-col gap-4"
             enctype="multipart/form-data"
         >
             @csrf

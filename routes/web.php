@@ -34,7 +34,7 @@ Route::delete('logout', [AuthController::class, 'destroy'])
     ->name('logout');
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('vacancies.application', VacancyApplicationController::class)
+    Route::resource('vacancies.applications', VacancyApplicationController::class)
         ->only([
             'create',
             'store',
