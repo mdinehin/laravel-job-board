@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployerController;
+use App\Http\Controllers\EmployerVacancyController;
 use App\Http\Controllers\UserVacancyApplicationController;
 use App\Http\Controllers\VacancyApplicationController;
 use App\Http\Controllers\VacancyController;
@@ -49,4 +50,6 @@ Route::middleware(['auth'])->group(function () {
             'create',
             'store',
         ]);
+
+    Route::resource('my-vacancies', EmployerVacancyController::class);
 });
