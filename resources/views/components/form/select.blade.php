@@ -5,7 +5,7 @@
 
     @foreach($optionsWithLabels as $option => $label)
         <option value="{{ $option }}"
-            @selected(request('category') === $option)
+            @selected(($value ?? request('category')) === $option)
         >{{ $label }}</option>
     @endforeach
 </select>
