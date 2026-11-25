@@ -24,6 +24,10 @@
                         <x-link-nav :href="route('my-applications.index')">Applications</x-link-nav>
                     </div>
 
+                    <div>
+                        <x-link-nav :href="route('my-vacancies.index')">Employer</x-link-nav>
+                    </div>
+
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         @method('DELETE')
