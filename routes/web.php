@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\UserVacancyApplicationController;
 use App\Http\Controllers\VacancyApplicationController;
 use App\Http\Controllers\VacancyController;
@@ -41,5 +42,11 @@ Route::middleware(['auth'])->group(function () {
         ->only([
             'index',
             'destroy',
+        ]);
+
+    Route::resource('employers', EmployerController::class)
+        ->only([
+            'create',
+            'store',
         ]);
 });
