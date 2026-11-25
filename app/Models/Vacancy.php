@@ -16,6 +16,20 @@ class Vacancy extends Model
     /** @use HasFactory<VacancyFactory> */
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'title',
+        'location',
+        'salary',
+        'description',
+        'experience',
+        'category',
+    ];
+
     public static array $experience = [
         'entry',
         'intermediate',
