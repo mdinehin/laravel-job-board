@@ -9,13 +9,13 @@
                 <div>
                     <x-form.label :required="true">Email</x-form.label>
 
-                    <x-form.text-input name="email" value="" placeholder="Email" />
+                    <x-form.text-input name="email" placeholder="Email" />
                 </div>
 
                 <div>
                     <x-form.label :required="true">Password</x-form.label>
 
-                    <x-form.text-input name="password" type="password" value="" placeholder="Password" />
+                    <x-form.text-input name="password" type="password" placeholder="Password" />
                 </div>
             </div>
 
