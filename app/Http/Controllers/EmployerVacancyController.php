@@ -19,7 +19,7 @@ class EmployerVacancyController extends Controller
      */
     public function create()
     {
-        //
+        return view('employer_vacancies.create');
     }
 
     /**
