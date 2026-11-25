@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Vacancy;
 use Illuminate\Http\Request;
 
 class EmployerVacancyController extends Controller
@@ -27,7 +29,22 @@ class EmployerVacancyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'salary' => 'required|numeric|min:5000|max:1000000',
+            'description' => 'required|string',
+            'experience' => 'required|in:'.implode(',', Vacancy::$experience),
+            'category' => 'required|in:'.implode(',', Vacancy::$category),
+        ]);
+
+        $request->user()
+            ->employer
+            ->vacancies()
+            ->create($validatedData);
+
+        return redirect()->route('my-vacancies.index')
+            ->with('success', 'Vacancy created successfully');
     }
 
     /**
