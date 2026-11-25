@@ -6,6 +6,7 @@ use App\Http\Controllers\EmployerVacancyController;
 use App\Http\Controllers\UserVacancyApplicationController;
 use App\Http\Controllers\VacancyApplicationController;
 use App\Http\Controllers\VacancyController;
+use App\Http\Middleware\Employer;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -51,5 +52,6 @@ Route::middleware(['auth'])->group(function () {
             'store',
         ]);
 
-    Route::resource('my-vacancies', EmployerVacancyController::class);
+    Route::middleware(Employer::class)
+        ->resource('my-vacancies', EmployerVacancyController::class);
 });
