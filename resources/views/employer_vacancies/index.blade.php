@@ -5,13 +5,15 @@
         ]"
     />
 
-    <div class="text-right">
+    <div>
         <x-link-button href="{{ route('my-vacancies.create') }}">Add New</x-link-button>
     </div>
 
     @forelse($vacancies as $vacancy)
         <x-vacancy-card :$vacancy>
             <p class="text-sm text-slate-500">{!! nl2br(e($vacancy->description)) !!}</p>
+
+            <h3 class="font-medium">Applications</h3>
 
             @forelse($vacancy->applications as $application)
                 <div class="flex items-center justify-between text-sm text-slate-500">
@@ -28,6 +30,18 @@
             @empty
                 <p>No applications available.</p>
             @endforelse
+
+            <hr class="border-slate-300" />
+
+            <div class="flex flex-row gap-2">
+                <div>
+                    <x-link-button href="{{ route('my-vacancies.edit', $vacancy) }}">Edit</x-link-button>
+                </div>
+
+                <div>
+                    <x-link-button href="#">Delete</x-link-button>
+                </div>
+            </div>
         </x-vacancy-card>
     @empty
         <x-card>
