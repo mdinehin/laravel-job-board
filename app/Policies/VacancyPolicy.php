@@ -17,6 +17,14 @@ class VacancyPolicy
     }
 
     /**
+     * Determine whether the employer can view any models.
+     */
+    public function viewAnyEmployer(User $user): bool
+    {
+        return true;
+    }
+
+    /**
      * Determine whether the user can view the model.
      */
     public function view(?User $user, Vacancy $vacancy): bool
@@ -29,15 +37,23 @@ class VacancyPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->employer !== null;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Vacancy $vacancy): bool
+    public function update(User $user, Vacancy $vacancy): bool|Response
     {
-        return false;
+        if ($vacancy->employer->user_id !== $user->id) {
+            return false;
+        }
+
+        if ($vacancy->applications()->count() > 0) {
+            return Response::deny('This vacancy cannot be edited because it already has applications.');
+        }
+
+        return true;
     }
 
     /**
@@ -45,7 +61,7 @@ class VacancyPolicy
      */
     public function delete(User $user, Vacancy $vacancy): bool
     {
-        return false;
+        return $vacancy->employer->user_id === $user->id;
     }
 
     /**
@@ -53,7 +69,7 @@ class VacancyPolicy
      */
     public function restore(User $user, Vacancy $vacancy): bool
     {
-        return false;
+        return $vacancy->employer->user_id === $user->id;
     }
 
     /**
@@ -61,7 +77,7 @@ class VacancyPolicy
      */
     public function forceDelete(User $user, Vacancy $vacancy): bool
     {
-        return false;
+        return $vacancy->employer->user_id === $user->id;
     }
 
     /**

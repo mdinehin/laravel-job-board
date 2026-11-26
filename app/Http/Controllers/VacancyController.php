@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class VacancyController extends Controller
 {
@@ -12,6 +13,8 @@ class VacancyController extends Controller
      */
     public function index()
     {
+        Gate::authorize('viewAny', Vacancy::class);
+
         $filters = request()->only([
             'search',
             'min_salary',
@@ -48,6 +51,8 @@ class VacancyController extends Controller
      */
     public function show(Vacancy $vacancy)
     {
+        Gate::authorize('view', $vacancy);
+
         return view('vacancies.show', [
             'vacancy' => $vacancy->load('employer.vacancies')
         ]);

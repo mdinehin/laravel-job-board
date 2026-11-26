@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\VacancyRequest;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class EmployerVacancyController extends Controller
 {
@@ -13,6 +14,8 @@ class EmployerVacancyController extends Controller
      */
     public function index(Request $request)
     {
+        Gate::authorize('viewAnyEmployer', Vacancy::class);
+
         return view('employer_vacancies.index', [
             'vacancies' => $request->user()->employer
                 ->vacancies()
@@ -30,6 +33,8 @@ class EmployerVacancyController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', Vacancy::class);
+
         return view('employer_vacancies.create');
     }
 
@@ -38,6 +43,8 @@ class EmployerVacancyController extends Controller
      */
     public function store(VacancyRequest $request)
     {
+        Gate::authorize('create', Vacancy::class);
+
         $request->user()
             ->employer
             ->vacancies()
@@ -65,6 +72,8 @@ class EmployerVacancyController extends Controller
      */
     public function edit(Vacancy $myVacancy)
     {
+        Gate::authorize('update', $myVacancy);
+
         return view('employer_vacancies.edit', [
             'vacancy' => $myVacancy,
         ]);
@@ -75,6 +84,8 @@ class EmployerVacancyController extends Controller
      */
     public function update(VacancyRequest $request, Vacancy $myVacancy)
     {
+        Gate::authorize('update', $myVacancy);
+
         $myVacancy->update(
             $request->validated()
         );
@@ -88,6 +99,8 @@ class EmployerVacancyController extends Controller
      */
     public function destroy(string $id)
     {
+        // Gate::authorize('delete', Vacancy::class);
+
         //
     }
 }
