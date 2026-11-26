@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Http\Requests\VacancyRequest;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 
@@ -36,21 +36,14 @@ class EmployerVacancyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(VacancyRequest $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-            'salary' => 'required|numeric|min:5000|max:1000000',
-            'description' => 'required|string',
-            'experience' => 'required|in:'.implode(',', Vacancy::$experience),
-            'category' => 'required|in:'.implode(',', Vacancy::$category),
-        ]);
-
         $request->user()
             ->employer
             ->vacancies()
-            ->create($validatedData);
+            ->create(
+                $request->validated()
+            );
 
         return redirect()->route('my-vacancies.index')
             ->with('success', 'Vacancy created successfully');
@@ -66,7 +59,7 @@ class EmployerVacancyController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * 
+     *
      * The $myVacancy parameter name mirrors the {my_vacancy} route parameter
      * from `my-vacancies/{my_vacancy}/edit` (`php artisan route:list`).
      */
