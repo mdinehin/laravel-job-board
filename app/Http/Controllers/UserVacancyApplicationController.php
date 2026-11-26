@@ -20,7 +20,8 @@ class UserVacancyApplicationController extends Controller
             'applications' => $user->applications()
                 ->with([
                     'vacancy' => fn ($query) => $query->withCount('applications')
-                        ->withAvg('applications', 'expected_salary'),
+                        ->withAvg('applications', 'expected_salary')
+                        ->withTrashed(),
                     'vacancy.employer',
                 ])
                 ->latest()

@@ -31,22 +31,24 @@
                 <p>No applications available.</p>
             @endforelse
 
-            <hr class="border-slate-300" />
+            @if(! $vacancy->deleted_at)
+                <hr class="border-slate-300" />
 
-            <div class="flex flex-row gap-2">
-                <div>
-                    <x-link-button href="{{ route('my-vacancies.edit', $vacancy) }}">Edit</x-link-button>
+                <div class="flex flex-row gap-2">
+                    <div>
+                        <x-link-button href="{{ route('my-vacancies.edit', $vacancy) }}">Edit</x-link-button>
+                    </div>
+
+                    <div>
+                        <form action="{{ route('my-vacancies.destroy', $vacancy) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <x-form.button>Delete</x-form.button>
+                        </form>
+                    </div>
                 </div>
-
-                <div>
-                    <form action="{{ route('my-vacancies.destroy', $vacancy) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-
-                        <x-form.button>Delete</x-form.button>
-                    </form>
-                </div>
-            </div>
+            @endif
         </x-vacancy-card>
     @empty
         <x-card>

@@ -24,6 +24,7 @@ class EmployerVacancyController extends Controller
                     'applications',
                     'applications.user',
                 ])
+                ->withTrashed()
                 ->get(),
         ]);
     }
