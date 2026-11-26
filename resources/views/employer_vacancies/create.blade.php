@@ -2,7 +2,7 @@
     <x-breadcrumb
         :links="[
             'My Vacancies' => route('my-vacancies.index'),
-            'Create' => '#'
+            'Create Vacancy' => '#'
         ]"
     />
 

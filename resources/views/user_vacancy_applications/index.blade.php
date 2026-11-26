@@ -40,11 +40,11 @@
         </x-vacancy-card>
     @empty
         <x-card>
-            <div>No vacancy applications available.</div>
+            <p>No vacancy applications available.</p>
 
-            <div>Find vacancies <x-link-nav class="text-indigo-600"
+            <p>Find vacancies <x-link-nav class="text-indigo-600"
                 :href="route('vacancies.index')"
-            >here</x-link-nav>.</div>
+            >here</x-link-nav>.</p>
         </x-card>
     @endforelse
 </x-layout>

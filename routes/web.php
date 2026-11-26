@@ -53,5 +53,8 @@ Route::middleware(['auth'])->group(function () {
         ]);
 
     Route::middleware(Employer::class)
-        ->resource('my-vacancies', EmployerVacancyController::class);
+        ->resource('my-vacancies', EmployerVacancyController::class)
+        ->except([
+            'show',
+        ]);
 });

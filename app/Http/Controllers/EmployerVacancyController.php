@@ -46,8 +46,7 @@ class EmployerVacancyController extends Controller
     {
         Gate::authorize('create', Vacancy::class);
 
-        $request->user()
-            ->employer
+        $request->user()->employer
             ->vacancies()
             ->create(
                 $request->validated()
@@ -55,14 +54,6 @@ class EmployerVacancyController extends Controller
 
         return redirect()->route('my-vacancies.index')
             ->with('success', 'Vacancy created successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**

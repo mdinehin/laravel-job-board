@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\VacancyApplication;
 use Illuminate\Http\Request;
 
@@ -13,11 +12,9 @@ class UserVacancyApplicationController extends Controller
      */
     public function index(Request $request)
     {
-        /** @var User $user */
-        $user = $request->user();
-
         return view('user_vacancy_applications.index', [
-            'applications' => $user->applications()
+            'applications' => $request->user()
+                ->applications()
                 ->with([
                     'vacancy' => fn ($query) => $query->withCount('applications')
                         ->withAvg('applications', 'expected_salary')

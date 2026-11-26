@@ -1,5 +1,5 @@
 <x-layout>
-    <h1 class="my-16 text-center text-4xl font-medoum text-slate-600">Sign in to your account</h1>
+    <h1 class="my-8 text-center text-4xl font-medoum text-slate-600">Sign in to your account</h1>
 
     <x-card class="py-15">
         <form action="{{ route('auth.store') }}" method="POST" class="flex flex-col gap-4 w-4/5 mx-auto">

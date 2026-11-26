@@ -11,35 +11,43 @@
         ])
     </head>
     <body class="mx-auto my-10 max-w-2xl flex flex-col gap-4 text-slate-700 bg-linear-to-r from-purple-100 via-pink-100 to-red-100">
-        <nav class="flex gap-4 justify-between items-center text-lg font-medium">
-            <div>
-                <x-link-nav :href="route('vacancies.index')">Home</x-link-nav>
-            </div>
+        <nav class="text-lg font-medium">
+            <ul class="flex flex-row justify-between items-center">
+                <li>
+                    @if (request()->routeIs('auth.create'))
+                        <x-link-nav :href="route('vacancies.index')">Home</x-link-nav>
+                    @endif
+                </li>
+                <li>
+                    <ul class="flex flex-row gap-2 items-center">
+                        @auth
+                            <li>
+                                <span>Hi, {{ auth()->user()->name ?? 'Anonymous' }}!</span>
+                            </li>
+                            <li>
+                                <x-link-nav :href="route('my-applications.index')">Applications</x-link-nav>
+                            </li>
+                            <li>
+                                <x-link-nav :href="route('my-vacancies.index')">Employer</x-link-nav>
+                            </li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
 
-            <div class="flex flex-row gap-2 items-center">
-                @auth
-                    <div>Hi, {{ auth()->user()->name ?? 'Anonymous' }}!</div>
-
-                    <div>
-                        <x-link-nav :href="route('my-applications.index')">Applications</x-link-nav>
-                    </div>
-
-                    <div>
-                        <x-link-nav :href="route('my-vacancies.index')">Employer</x-link-nav>
-                    </div>
-
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-
-                        <button
-                            class="cursor-pointer hover:underline hover:underline-offset-4"
-                        >(Sign out)</button>
-                    </form>
-                @else
-                    <x-link-nav :href="route('login')">Sign in</x-link-nav>
-                @endauth
-            </div>
+                                    <button
+                                        class="cursor-pointer hover:underline hover:underline-offset-4"
+                                    >(Sign out)</button>
+                                </form>
+                            </li>
+                        @else
+                            <li>
+                                <x-link-nav :href="route('login')">Sign in</x-link-nav>
+                            </li>
+                        @endauth
+                    </ul>
+                </li>
+            </ul>
         </nav>
 
         @if(session('success'))
