@@ -66,10 +66,15 @@ class EmployerVacancyController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * 
+     * The $myVacancy parameter name mirrors the {my_vacancy} route parameter
+     * from `my-vacancies/{my_vacancy}/edit` (`php artisan route:list`).
      */
-    public function edit(string $id)
+    public function edit(Vacancy $myVacancy)
     {
-        //
+        return view('employer_vacancies.edit', [
+            'vacancy' => $myVacancy,
+        ]);
     }
 
     /**
