@@ -11,9 +11,18 @@ class EmployerVacancyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('employer_vacancies.index');
+        return view('employer_vacancies.index', [
+            'vacancies' => $request->user()->employer
+                ->vacancies()
+                ->with([
+                    'employer',
+                    'applications',
+                    'applications.user',
+                ])
+                ->get(),
+        ]);
     }
 
     /**
