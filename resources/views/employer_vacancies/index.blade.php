@@ -39,7 +39,12 @@
                 </div>
 
                 <div>
-                    <x-link-button href="#">Delete</x-link-button>
+                    <form action="{{ route('my-vacancies.destroy', $vacancy) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <x-form.button>Delete</x-form.button>
+                    </form>
                 </div>
             </div>
         </x-vacancy-card>

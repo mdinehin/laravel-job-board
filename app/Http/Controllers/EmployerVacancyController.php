@@ -97,10 +97,13 @@ class EmployerVacancyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Vacancy $myVacancy)
     {
-        // Gate::authorize('delete', Vacancy::class);
+        Gate::authorize('delete', $myVacancy);
 
-        //
+        $myVacancy->delete();
+
+        return redirect()->route('my-vacancies.index')
+            ->with('success', 'Vacancy deleted successfully');
     }
 }
