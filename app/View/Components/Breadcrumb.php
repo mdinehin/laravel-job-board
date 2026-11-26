@@ -10,6 +10,8 @@ class Breadcrumb extends Component
 {
     /**
      * Create a new component instance.
+     *
+     * @param  array<string, string>  $links
      */
     public function __construct(
         public array $links

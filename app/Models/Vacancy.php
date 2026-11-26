@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\VacancyApplication;
 use Database\Factories\VacancyFactory;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,12 +30,22 @@ class Vacancy extends Model
         'category',
     ];
 
+    /**
+     * Available experience levels for vacancies.
+     *
+     * @var list<string>
+     */
     public static array $experience = [
         'entry',
         'intermediate',
         'senior',
     ];
 
+    /**
+     * Available categories for vacancies.
+     *
+     * @var list<string>
+     */
     public static array $category = [
         'construction',
         'design',
@@ -80,7 +89,7 @@ class Vacancy extends Model
      * Normalize option labels by capitalizing standard words
      * and uppercasing short acronyms based on the length threshold.
      *
-     * @param list<string> $options
+     * @param  list<string>  $options
      * @return list<string>
      */
     public static function normalizeLabels(array $options): array
@@ -91,9 +100,6 @@ class Vacancy extends Model
     /**
      * Normalize a label by capitalizing standard words and
      * uppercasing short acronyms based on the length threshold.
-     *
-     * @param string $option
-     * @return string
      */
     public static function normalizeLabel(string $option): string
     {
@@ -105,9 +111,9 @@ class Vacancy extends Model
     /**
      * Scope a query to apply various search and attribute filters.
      *
-     * @param Builder $query
-     * @param array $filters
-     * @return Builder
+     * @param  Builder<static>  $query
+     * @param  array<string, mixed>  $filters
+     * @return Builder<static>
      */
     public function scopeFilter(Builder $query, array $filters): Builder
     {
@@ -136,9 +142,6 @@ class Vacancy extends Model
 
     /**
      * Determine if the given user has already applied for this job.
-     *
-     * @param Authenticatable|int $user
-     * @return bool
      */
     public function hasUserApplied(Authenticatable|int $user): bool
     {

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\VacancyRequest;
 use App\Models\Vacancy;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -12,13 +14,14 @@ class EmployerVacancyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         Gate::authorize('viewAnyEmployer', Vacancy::class);
 
         return view('employer_vacancies.index', [
             'vacancies' => $request->user()->employer
                 ->vacancies()
+                ->latest()
                 ->with([
                     'employer',
                     'applications',
@@ -32,7 +35,7 @@ class EmployerVacancyController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         Gate::authorize('create', Vacancy::class);
 
@@ -42,7 +45,7 @@ class EmployerVacancyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(VacancyRequest $request)
+    public function store(VacancyRequest $request): RedirectResponse
     {
         Gate::authorize('create', Vacancy::class);
 
@@ -62,7 +65,7 @@ class EmployerVacancyController extends Controller
      * The $myVacancy parameter name mirrors the {my_vacancy} route parameter
      * from `my-vacancies/{my_vacancy}/edit` (`php artisan route:list`).
      */
-    public function edit(Vacancy $myVacancy)
+    public function edit(Vacancy $myVacancy): View
     {
         Gate::authorize('update', $myVacancy);
 
@@ -74,7 +77,7 @@ class EmployerVacancyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(VacancyRequest $request, Vacancy $myVacancy)
+    public function update(VacancyRequest $request, Vacancy $myVacancy): RedirectResponse
     {
         Gate::authorize('update', $myVacancy);
 
@@ -89,7 +92,7 @@ class EmployerVacancyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Vacancy $myVacancy)
+    public function destroy(Vacancy $myVacancy): RedirectResponse
     {
         Gate::authorize('delete', $myVacancy);
 

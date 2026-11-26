@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\VacancyApplication;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class UserVacancyApplicationController extends Controller
@@ -10,7 +12,7 @@ class UserVacancyApplicationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         return view('user_vacancy_applications.index', [
             'applications' => $request->user()
@@ -28,14 +30,12 @@ class UserVacancyApplicationController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * 
+     *
      * Uses implicit route-model binding, so the parameter name ($myApplication)
      * must match the camelCase equivalent of the {my_application} route segment
      * on DELETE my-applications/{my_application}.
-     *
-     * @param  VacancyApplication  $myApplication
      */
-    public function destroy(VacancyApplication $myApplication)
+    public function destroy(VacancyApplication $myApplication): RedirectResponse
     {
         $myApplication->delete();
 

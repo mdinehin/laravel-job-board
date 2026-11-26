@@ -11,6 +11,8 @@ class RadioGroup extends Component
 {
     /**
      * Create a new component instance.
+     *
+     * @param  list<string>|array<string, string>  $options
      */
     public function __construct(
         public string $name,
@@ -23,11 +25,11 @@ class RadioGroup extends Component
 
     /**
      * Get the options formatted with labels.
-     * 
+     *
      * If provided a sequential list, values are keyed to themselves.
      * If already associative, returns the array as-is.
      *
-     * @return array<string, string>
+     * @return array<int|string, string>
      */
     public function optionsWithLabels(): array
     {
