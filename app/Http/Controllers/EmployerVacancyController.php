@@ -73,9 +73,14 @@ class EmployerVacancyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(VacancyRequest $request, Vacancy $myVacancy)
     {
-        //
+        $myVacancy->update(
+            $request->validated()
+        );
+
+        return redirect()->route('my-vacancies.index')
+            ->with('success', 'Vacancy updated successfully');
     }
 
     /**
