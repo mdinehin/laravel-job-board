@@ -43,6 +43,11 @@
     @endif
 
     @error($name)
-        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+        <p
+            @class([
+                'text-xs text-red-500',
+                'mt-1' => $type !== 'textarea',
+            ])
+        >{{ $message }}</p>
     @enderror
 </div>
